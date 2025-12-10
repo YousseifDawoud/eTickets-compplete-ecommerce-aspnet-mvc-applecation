@@ -18,19 +18,8 @@ namespace eTickets.Data.Persistence
         {
             base.OnModelCreating(modelBuilder);
 
-            // Many-to-Many: Movie <-> Actor
-            modelBuilder.Entity<Actor_Movie>() // Composite Primary Key
-                .HasKey(am => new { am.MovieId, am.ActorId });
-
-            modelBuilder.Entity<Actor_Movie>() // Movie With Actors_Movies
-                .HasOne(am => am.Movie)
-                .WithMany(m => m.Actors_Movies)
-                .HasForeignKey(am => am.MovieId);
-
-            modelBuilder.Entity<Actor_Movie>() // Actor With Actors_Movies
-                .HasOne(am => am.Actor)
-                .WithMany(a => a.Actors_Movies)
-                .HasForeignKey(am => am.ActorId);
+            // Apply configurations
+            modelBuilder.ApplyConfigurationsFromAssembly(typeof(AppDbContext).Assembly);
         }
     }
 }
