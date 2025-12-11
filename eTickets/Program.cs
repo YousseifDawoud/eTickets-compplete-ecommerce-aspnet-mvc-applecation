@@ -1,11 +1,12 @@
 using eTickets.Data.Persistence;
+using eTickets.Data.Seed;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
 
@@ -39,6 +40,16 @@ namespace eTickets
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
+
+
+            // SEED DATABASE WITH CANCELLATION TOKEN
+            using (var scope = app.Services.CreateScope())
+            {
+                var lifetime = scope.ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
+                CancellationToken ct = lifetime.ApplicationStopping;
+
+                await AppDbInitializer.SeedAsync(app, ct);
+            }
 
             app.Run();
         }
