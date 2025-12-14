@@ -1,0 +1,79 @@
+﻿@model IEnumerable<Actor>
+
+@{
+    ViewData["Title"] = "List Of Actors";
+}
+
+<div class="row">
+    <div class="col-md-10 offset-md-1">
+
+        <div class="card shadow-lg border-0 mb-4" style="border-radius: 12px;">
+            <div class="card-body p-0">
+
+                <table class="table mb-0 align-middle" style="border-radius: 12px; overflow: hidden;">
+
+                    <thead style="background-color: #eef3f8;">
+                        <tr class="text-center" style="color: #4a4a4a;">
+                            <th>@Html.DisplayNameFor(model => model.ProfilePictureURL)</th>
+                            <th>@Html.DisplayNameFor(model => model.FullName)</th>
+                            <th>@Html.DisplayNameFor(model => model.Bio)</th>
+                            <th style="width: 260px;">Actions</th>
+                        </tr>
+                    </thead>
+
+                    <tbody style="background-color: #fafbfc;">
+                        @foreach (var actor in Model)
+                        {
+                            <tr class="border-bottom" style="height: 95px;">
+                                <td class="text-center">
+                                    <img class="rounded-circle shadow-sm"
+                                         src="https://w0.peakpx.com/wallpaper/300/642/HD-wallpaper-american-celebrity-actor-tom-cruise.jpg"
+                                         alt="@actor.FullName"
+                                         style="width: 100px; height: 100px; object-fit: cover;" />
+                                </td>
+
+                                <td class="text-center" style="color: #2d2d2d; font-weight: 500;">
+                                    @actor.FullName
+                                </td>
+
+                                <td class="text-center" style="color: #555;">
+                                    @actor.Bio
+                                </td>
+
+                                <td class="text-center">
+                                    <div class="d-flex justify-content-center align-items-center gap-2">
+
+                                        <a class="btn btn-sm text-white"
+                                           style="background-color: #4a90e2; border-radius: 6px;"
+                                           asp-action="Edit" asp-route-id="@actor.Id">
+                                            <i class="bi bi-pencil-square"></i>
+                                            <span class="ms-1">Edit</span>
+                                        </a>
+
+                                        <a class="btn btn-sm text-white"
+                                           style="background-color: #20bfa9; border-radius: 6px;"
+                                           asp-action="Details" asp-route-id="@actor.Id">
+                                            <i class="bi bi-eye"></i>
+                                            <span class="ms-1">Details</span>
+                                        </a>
+
+                                        <a class="btn btn-sm text-white"
+                                           style="background-color: #e74c3c; border-radius: 6px;"
+                                           asp-action="Delete" asp-route-id="@actor.Id">
+                                            <i class="bi bi-trash"></i>
+                                            <span class="ms-1">Delete</span>
+                                        </a>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                </table>
+            </div>
+
+        </div>
+
+    </div>
+</div>

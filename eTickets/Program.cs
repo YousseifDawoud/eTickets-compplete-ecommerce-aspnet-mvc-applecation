@@ -46,7 +46,7 @@ namespace eTickets
             using (var scope = app.Services.CreateScope())
             {
                 var lifetime = scope.ServiceProvider.GetRequiredService<IHostApplicationLifetime>();
-                CancellationToken ct = lifetime.ApplicationStopping;
+                var ct = lifetime.ApplicationStopping;
 
                 await AppDbInitializer.SeedAsync(app, ct);
             }

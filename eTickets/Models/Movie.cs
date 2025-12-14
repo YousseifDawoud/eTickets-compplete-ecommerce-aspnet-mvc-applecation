@@ -12,6 +12,8 @@ namespace eTickets.Models
         public string Name { get; set; } = null!;
         public string? Description { get; set; }
         public decimal Price { get; set; }
+
+        [Display (Name = "Movie Poster")]
         public string ImageUrl { get; set; } = null!;
         public DateTime StartDate { get; set; }
         public DateTime EndDate { get; set; }

@@ -21,10 +21,19 @@ namespace eTickets.Data.Seed
             // --------------------------------------
             // Apply Migrations FIRST (added)
             // --------------------------------------
-            await context.Database.MigrateAsync(ct);
+            // Only run migrations for relational providers (avoid InMemory provider errors)
+            if (context.Database.IsRelational())
+            {
+                 context.Database.Migrate();
+            }
+            else
+            {
+                // For non-relational providers use EnsureCreated if you need a created schema:
+                context.Database.EnsureCreated();
+            }
 
             // Ensure the database is created (kept as you requested)
-            context.Database.EnsureCreated();
+            //context.Database.EnsureCreated();
 
             // Initialize Faker for generating fake data
             var faker = new Faker("en");

@@ -1,0 +1,148 @@
+﻿@model IEnumerable<Movie>
+
+@{
+    ViewData["Title"] = "List Of Movies";
+}
+
+<style>
+
+    /* CARD CONTAINER */
+    .movie-card {
+        width: 100%;
+        max-width: 420px;
+        border-radius: 12px;
+        border: none;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+        overflow: hidden;
+        transition: transform .35s ease, box-shadow .35s ease;
+        background: white;
+    }
+
+        /* Smart Hover Animation */
+        .movie-card:hover {
+            transform: translateY(-10px) scale(1.01);
+            box-shadow: 0 8px 26px rgba(0,0,0,0.22);
+        }
+
+    /* IMAGE ANIMATION WRAPPER */
+    .movie-img-wrapper {
+        height: 100%;
+        overflow: hidden;
+    }
+
+    /* Image hover smart zoom */
+    .movie-img-left {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform .45s ease;
+    }
+
+    .movie-card:hover .movie-img-left {
+        transform: scale(1.08);
+    }
+
+    /* HEADER CHANGE COLOR ON HOVER */
+    .movie-header {
+        transition: background .35s ease;
+    }
+
+    .movie-card:hover .movie-header {
+        background: #1e88e5 !important; /* slightly darker */
+    }
+
+    /* BODY */
+    .movie-body {
+        padding: 14px;
+        font-size: .90rem;
+        color: #444;
+    }
+
+    /* FOOTER BUTTONS ANIMATION */
+    .movie-footer a {
+        transition: background .3s ease, color .3s ease, transform .3s ease;
+        margin-bottom: 8px; /* adds breathable space inside */
+    }
+
+    .movie-footer a:hover {
+        transform: translateY(-2px);
+    }
+
+</style>
+
+
+<div class="row">
+    @foreach (var movie in Model)
+    {
+        <div class="col-lg-4 col-md-6 col-sm-12 mb-4 d-flex justify-content-center">
+            <div class="card movie-card">
+
+                <div class="row g-0" style="height: 100%;">
+
+                    <!-- IMAGE COLUMN -->
+                    <div class="col-5 movie-img-wrapper">
+                        <img class="movie-img-left"
+                             src="https://filmartgallery.com/cdn/shop/products/Spider-Man-No-Way-Home-Vintage-Movie-Poster-Original_97ac13a0_1024x1024.jpg?v=1741736655"
+                             alt="@movie.Name" />
+                    </div>
+
+                    <!-- DETAILS COLUMN -->
+                    <div class="col-7 d-flex flex-column">
+
+                        <!-- HEADER -->
+                        <div class="p-2 d-flex justify-content-between movie-header"
+                             style="background:#2196f3; color:white;">
+                            <span style="font-size: 17px; font-weight:600;">
+                                @movie.Name
+                            </span>
+                            <a class="text-white" asp-action="Edit" asp-route-id="@movie.Id">
+                                <i class="bi bi-pencil-square"></i>
+                            </a>
+                        </div>
+
+                        <!-- BODY -->
+                        <div class="movie-body flex-grow-1">
+                            <p class="mb-1">@movie.Description</p>
+                            <p class="mb-1"><b>Cinema:</b> @movie.Cinema!.Name</p>
+                            <p class="mb-1"><b>Category:</b> @movie.MovieCategory</p>
+                            <p class="mb-1"><b>Start:</b> @movie.StartDate</p>
+                            <p class="mb-1"><b>End:</b> @movie.EndDate</p>
+
+                            <b>Status:</b>
+                            @if (DateTime.Now >= movie.StartDate && DateTime.Now <= movie.EndDate)
+                            {
+                                <span class="badge bg-success">AVAILABLE</span>
+                            }
+                            else if (DateTime.Now > movie.EndDate)
+                            {
+                                <span class="badge bg-danger">EXPIRED</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-primary">UPCOMING</span>
+                            }
+                        </div>
+
+                        <!-- FOOTER -->
+                        <div  class="movie-footer d-flex justify-content-around ">
+                            <a class="btn btn-outline-primary btn-sm"
+                               asp-action="Details" asp-route-id="@movie.Id">
+                                <i class="bi bi-eye-fill"></i> Details
+                            </a>
+
+                            <a class="btn btn-success btn-sm text-white @((DateTime.Now > movie.EndDate) ? "disabled" : "")"
+                               asp-controller="Orders"
+                               asp-action="AddItemToShoppingCart"
+                               asp-route-id="@movie.Id">
+                                <i class="bi bi-cart-plus"></i> Add @movie.Price.ToString("c")
+                            </a>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    }
+</div>
