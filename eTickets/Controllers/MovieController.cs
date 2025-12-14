@@ -4,14 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
-    public class MovieController : Controller
+    public class MovieController(AppDbContext context) : Controller
     {
-        private readonly AppDbContext _context;
-
-        public MovieController(AppDbContext context)
-        {
-            _context = context;
-        }
+        private readonly AppDbContext _context = context;
 
         // GET: /Movie
         public async Task<IActionResult> Index(CancellationToken ct)

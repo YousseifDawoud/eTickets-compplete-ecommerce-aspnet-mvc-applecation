@@ -4,15 +4,10 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
-    public class ActorController : Controller
+    public class ActorController(AppDbContext context) : Controller
     {
         
-        private readonly AppDbContext _context;
-
-        public ActorController(AppDbContext context)
-        {
-            _context = context;
-        }
+        private readonly AppDbContext _context = context;
 
         // GET: /Actor
         public async Task<IActionResult> Index()

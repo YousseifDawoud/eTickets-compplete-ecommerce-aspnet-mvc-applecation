@@ -11,40 +11,155 @@
     <link rel="stylesheet"
           href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
 
+    <style>
+        .footer {
+            font-size: 0.9rem;
+        }
+
+        .footer a:hover {
+            color: #0d6efd !important;
+        }
+    </style>
+
+
 </head>
 <body>
     <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top border-bottom shadow-sm">
             <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">eTickets</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
+
+                <!-- BRAND -->
+                <a class="navbar-brand fw-bold text-primary"
+                   asp-controller="Movie" asp-action="Index">
+                    <i class="bi bi-ticket-perforated"></i> eTickets
+                </a>
+
+                <!-- TOGGLER -->
+                <button class="navbar-toggler"
+                        type="button"
+                        data-bs-toggle="collapse"
+                        data-bs-target="#mainNavbar"
+                        aria-controls="mainNavbar"
+                        aria-expanded="false"
+                        aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
+
+                <!-- NAVBAR CONTENT -->
+                <div class="collapse navbar-collapse" id="mainNavbar">
+
+                    <!-- LEFT LINKS -->
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                            <a class="nav-link"
+                               asp-controller="Movie"
+                               asp-action="Index">
+                                <i class="bi bi-film"></i> Movies
+                            </a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle"
+                               href="#"
+                               id="managementDropdown"
+                               role="button"
+                               data-bs-toggle="dropdown"
+                               aria-expanded="false">
+                                <i class="bi bi-gear"></i> Management
+                            </a>
+
+                            <ul class="dropdown-menu shadow-sm"
+                                aria-labelledby="managementDropdown">
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Cinema"
+                                       asp-action="Index">
+                                        <i class="bi bi-camera-reels"></i> Cinemas
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Producer"
+                                       asp-action="Index">
+                                        <i class="bi bi-headset"></i> Producers
+                                    </a>
+                                </li>
+
+                                <li>
+                                    <a class="dropdown-item"
+                                       asp-controller="Actor"
+                                       asp-action="Index">
+                                        <i class="bi bi-person-square"></i> Actors
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
                     </ul>
+
+                    <!-- SEARCH -->
+                    <form class="d-flex me-3"
+                          asp-controller="Movie"
+                          asp-action="Filter"
+                          method="get"> 
+                        <input name="searchString"
+                               class="form-control form-control-sm me-2"
+                               type="search"
+                               placeholder="Search movies..."
+                               aria-label="Search" />
+                        <button class="btn btn-outline-success btn-sm"
+                                type="submit">
+                            <i class="bi bi-search"></i>
+                        </button>
+                    </form>
+
+                    <!-- CART -->
+                    @* <ul class="navbar-nav me-3">
+                        @await Component.InvokeAsync("ShoppingCartSummary")
+                    </ul> *@
+                    @* 
+                    <!-- IDENTITY -->
+                    <partial name="_Identity" /> *@
+
                 </div>
             </div>
         </nav>
     </header>
+
     <div class="container-fluid">
-        <main role="main" class="pb-3">
+        <main role="main" class="container pt-5 mt-4">
             @RenderBody()
         </main>
     </div>
 
-    <footer class="border-top footer text-muted">
+    <footer class="footer mt-auto py-1 bg-light border-top">
         <div class="container">
-            &copy; 2025 - eTickets - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            <div class="row align-items-center">
+
+                <!-- LEFT -->
+                <div class="col-md-6 text-center text-md-start text-muted">
+                    © 2025 <strong>eTickets</strong>. All rights reserved.
+                </div>
+
+                <!-- RIGHT -->
+                <div class="col-md-6 text-center text-md-end">
+                    <a href="#" class="text-muted me-3 text-decoration-none">
+                        <i class="bi bi-info-circle"></i> About
+                    </a>
+                    <a href="#" class="text-muted me-3 text-decoration-none">
+                        <i class="bi bi-shield-lock"></i> Privacy
+                    </a>
+                    <a href="#" class="text-muted text-decoration-none">
+                        <i class="bi bi-envelope"></i> Contact
+                    </a>
+                </div>
+
+            </div>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>

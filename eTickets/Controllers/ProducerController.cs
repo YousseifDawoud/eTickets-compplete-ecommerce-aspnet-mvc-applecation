@@ -4,14 +4,9 @@ using Microsoft.EntityFrameworkCore;
 
 namespace eTickets.Controllers
 {
-    public class ProducerController : Controller
+    public class ProducerController(AppDbContext context) : Controller
     {
-        private readonly AppDbContext _context;
-
-        public ProducerController(AppDbContext context)
-        {
-            _context = context;
-        }
+        private readonly AppDbContext _context = context;
 
         // GET: /Producer
         public async Task<IActionResult> Index(CancellationToken ct)
