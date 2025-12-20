@@ -1,5 +1,6 @@
 using eTickets.Data.Persistence;
 using eTickets.Data.Seed;
+using eTickets.Data.Services;
 using Microsoft.EntityFrameworkCore;
 
 namespace eTickets
@@ -8,18 +9,25 @@ namespace eTickets
     {
         public static async Task Main(string[] args)
         {
+            // Create WebApplication builder
             var builder = WebApplication.CreateBuilder(args);
 
-            // 1. Add DbContext (SQL Server)
+
+            // Add MVC
+            builder.Services.AddControllersWithViews();
+
+
+            // Add DbContext (SQL Server)
             builder.Services.AddDbContext<AppDbContext>(options =>
                 options.UseSqlServer(
                     builder.Configuration.GetConnectionString("DefaultConnectionString")
                 )
             );
 
-            // 2. Add MVC
-            builder.Services.AddControllersWithViews();
+            // Register Services for Dependency Injection
+            builder.Services.AddScoped<IActorService, ActorService>();
 
+            // Build the app
             var app = builder.Build();
 
             // Configure HTTP request pipeline

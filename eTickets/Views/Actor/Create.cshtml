@@ -1,0 +1,96 @@
+﻿@model Actor
+
+@{
+    ViewData["Title"] = "Add New Actor";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+
+        <div class="card shadow-sm border-0 rounded-4">
+            <div class="card-header bg-primary text-white rounded-top-4">
+                <h4 class="mb-0">
+                    <i class="bi bi-person-plus"></i> Add New Actor
+                </h4>
+            </div>
+
+            <div class="card-body p-4">
+
+                <form asp-action="Create" method="post">
+
+                    <div asp-validation-summary="ModelOnly"
+                         class="alert alert-danger small">
+                    </div>
+
+                    <!-- IMAGE PREVIEW -->
+                    <div class="text-center mb-4">
+                        <img id="ProfilePicturePreview"
+                             class="rounded-circle border shadow-sm"
+                             style="width:150px; height:150px; object-fit:cover;"
+                             src="~/Images/Actors/PersonProfile.png"
+                             alt="Actor Preview" />
+                    </div>
+
+                    <!-- PROFILE PICTURE URL -->
+                    <div class="mb-3">
+                        <label asp-for="ProfilePictureURL" class="form-label"></label>
+                        <input asp-for="ProfilePictureURL"
+                               class="form-control"
+                               placeholder="Paste image URL here" />
+                        <span asp-validation-for="ProfilePictureURL"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <!-- FULL NAME -->
+                    <div class="mb-3">
+                        <label asp-for="FullName" class="form-label"></label>
+                        <input asp-for="FullName"
+                               class="form-control"
+                               placeholder="Enter actor full name" />
+                        <span asp-validation-for="FullName"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <!-- BIO -->
+                    <div class="mb-3">
+                        <label asp-for="Bio" class="form-label"></label>
+                        <textarea asp-for="Bio"
+                                  class="form-control"
+                                  rows="3"
+                                  placeholder="Short biography (optional)">
+                        </textarea>
+                        <span asp-validation-for="Bio"
+                              class="text-danger small"></span>
+                    </div>
+
+                    <!-- ACTIONS -->
+                    <div class="d-flex justify-content-between mt-4">
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary">
+                            <i class="bi bi-arrow-left"></i> Back To List
+                        </a>
+
+                        <button type="submit"
+                                class="btn btn-success">
+                            <i class="bi bi-check-circle"></i> Create
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const input = document.getElementById("ProfilePictureURL");
+        const preview = document.getElementById("ProfilePicturePreview");
+
+        input.addEventListener("input", () => {
+            preview.src = input.value || "~/Images/Actors/PersonProfile.png";
+        });
+    </script>
+}
