@@ -1,0 +1,106 @@
+﻿@model Actor
+
+@{
+    ViewData["Title"] = "Edit Actor";
+}
+
+<div class="container mt-4" style="max-width: 1000px;">
+
+    <!-- PAGE HEADER -->
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h2 class="fw-bold mb-0">Edit Actor</h2>
+        <span class="text-muted">ID: @Model.Id</span>
+    </div>
+
+    <form asp-action="Edit" method="post" class="border rounded">
+
+        <input type="hidden" asp-for="Id" />
+
+        <!-- CONTENT -->
+        <div class="row g-0">
+
+            <!-- LEFT PANEL -->
+            <div class="col-md-4 border-end bg-light p-4 text-center">
+
+                <img id="ProfilePicturePreview"
+                     src="@Model.ProfilePictureURL"
+                     class="img-fluid rounded mb-3 border"
+                     style="height:300px; width:100%; object-fit:cover;" />
+
+                <label class="form-label fw-semibold">
+                    Profile Picture URL
+                </label>
+
+                <input asp-for="ProfilePictureURL"
+                       class="form-control" />
+
+                <span asp-validation-for="ProfilePictureURL"
+                      class="text-danger small"></span>
+
+            </div>
+
+            <!-- RIGHT PANEL -->
+            <div class="col-md-8 p-4">
+
+                <div asp-validation-summary="ModelOnly"
+                     class="alert alert-danger small">
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="FullName"
+                           class="form-label fw-semibold">
+                    </label>
+
+                    <input asp-for="FullName"
+                           class="form-control form-control-lg" />
+
+                    <span asp-validation-for="FullName"
+                          class="text-danger small"></span>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Bio"
+                           class="form-label fw-semibold">
+                    </label>
+
+                    <textarea asp-for="Bio"
+                              class="form-control"
+                              rows="7">
+                    </textarea>
+
+                    <span asp-validation-for="Bio"
+                          class="text-danger small"></span>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- FOOTER ACTIONS -->
+        <div class="d-flex justify-content-between align-items-center px-4 py-3 border-top bg-white">
+
+            <a asp-action="Index"
+               class="btn btn-outline-secondary btn-lg px-4">
+                Back
+            </a>
+
+            <button type="submit"
+                    class="btn btn-dark btn-lg px-5">
+                Save Changes
+            </button>
+
+        </div>
+
+    </form>
+
+</div>
+
+@section Scripts {
+    <script>
+        const input = document.getElementById("ProfilePictureURL");
+        const preview = document.getElementById("ProfilePicturePreview");
+
+        input.addEventListener("input", function () {
+            preview.src = this.value || preview.src;
+        });
+    </script>
+}

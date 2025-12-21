@@ -50,4 +50,31 @@ public class ActorController : Controller
         if (actor is null) return  NotFound();
         return View(actor);
     }
+
+    // GET: Actor/Edit/id
+    public async Task<IActionResult> Edit(int id)
+    {
+        var actor = await _service.GetByIdAsync(id, HttpContext.RequestAborted);
+
+        if (actor is null)
+            return NotFound();
+
+        return View(actor);
+    }
+
+    // POST: Actor/Edit/id
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(int id, Actor actor)
+    {
+        if (id != actor.Id)
+            return BadRequest();
+
+        if (!ModelState.IsValid)
+            return View(actor);
+
+        await _service.UpdateAsync(id, actor, HttpContext.RequestAborted);
+
+        return RedirectToAction(nameof(Index));
+    }
 }

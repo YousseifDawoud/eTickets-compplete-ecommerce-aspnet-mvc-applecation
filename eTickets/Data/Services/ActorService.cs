@@ -13,7 +13,11 @@ namespace eTickets.Data.Services
             _context =  context;
         }
 
+        // CRUD Operations
 
+
+
+        // Get all actors from the database asynchronously
         public async Task<IEnumerable<Actor>> GetAllAsync(CancellationToken ct)
         {
             return await _context.Actors
@@ -21,6 +25,8 @@ namespace eTickets.Data.Services
                                  .ToListAsync(ct);
         }
 
+
+        // Get a single actor by ID from the database asynchronously
         public async Task<Actor?> GetByIdAsync(int id, CancellationToken ct)
         {
             return await _context.Actors
@@ -28,6 +34,8 @@ namespace eTickets.Data.Services
                 .FirstOrDefaultAsync(a => a.Id == id, ct);
         }
 
+
+        // Create a new actor to the database asynchronously
         public async Task AddAsync(Actor actor, CancellationToken ct )
         {
             ArgumentNullException.ThrowIfNull(actor);
@@ -48,6 +56,7 @@ namespace eTickets.Data.Services
             if (existingActor is null)
                 throw new KeyNotFoundException($"Actor with ID {id} not found.");
 
+            // Update actor properties
             existingActor.FullName = updatedActor.FullName;
             existingActor.Bio = updatedActor.Bio;
             existingActor.ProfilePictureURL = updatedActor.ProfilePictureURL;
