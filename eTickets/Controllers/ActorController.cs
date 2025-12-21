@@ -1,5 +1,6 @@
 ﻿using eTickets.Data.Persistence;
 using eTickets.Data.Services;
+using eTickets.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
@@ -23,9 +24,22 @@ namespace eTickets.Controllers
         }
 
         // Get: Actor/Create
+        [HttpGet]
         public IActionResult Create()
         {
             return View();
+        }
+
+        // Post : Actor/Create
+        [HttpPost]
+        public async Task<IActionResult> Create(Actor actor)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(actor);
+            }
+            await _service.AddAsync(actor, HttpContext.RequestAborted);
+            return RedirectToAction(nameof(Index));
         }
     }
 }

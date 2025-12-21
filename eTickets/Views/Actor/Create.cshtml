@@ -88,9 +88,30 @@
     <script>
         const input = document.getElementById("ProfilePictureURL");
         const preview = document.getElementById("ProfilePicturePreview");
+        const defaultImage = "/Images/Actors/PersonProfile.png";
 
+        // 1. Function to update the image
+        function updatePreview(url) {
+            preview.src = url || defaultImage;
+        }
+
+        // 2. Handle initial load (from existing input value)
+        $(document).ready(function () {
+            updatePreview(input.value);
+        });
+
+        // 3. Handle live typing/input
         input.addEventListener("input", () => {
-            preview.src = input.value || "~/Images/Actors/PersonProfile.png";
+            updatePreview(input.value);
+        });
+
+        // 4. THE FIX: Handle broken URLs (the "Second Src" logic)
+        preview.addEventListener("error", function() {
+            // Only set to default if it's not already the default 
+            // (prevents infinite loops if the default is also missing)
+            if (preview.src !== window.location.origin + defaultImage) {
+                preview.src = defaultImage;
+            }
         });
     </script>
 }
