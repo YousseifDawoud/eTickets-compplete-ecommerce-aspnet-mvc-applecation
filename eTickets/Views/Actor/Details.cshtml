@@ -1,0 +1,79 @@
+﻿@model Actor
+
+@{
+    ViewData["Title"] = "Actor Details";
+}
+
+<div class="container mt-5">
+
+    <div class="card shadow-xl border-0 rounded-4 overflow-hidden">
+
+        <!-- HERO HEADER -->
+        <div class="row g-0">
+
+            <!-- IMAGE SIDE -->
+            <div class="col-md-4 bg-dark text-center d-flex align-items-center justify-content-center p-4">
+                <img src="@Model.ProfilePictureURL"
+                     class="img-fluid rounded-4 shadow"
+                     style="max-height:350px; object-fit:cover;"
+                     alt="@Model.FullName" />
+            </div>
+
+            <!-- INFO SIDE -->
+            <div class="col-md-8">
+                <div class="card-body p-5">
+
+                    <span class="badge bg-info mb-3">
+                        Actor Profile
+                    </span>
+
+                    <h2 class="fw-bold mb-3">
+                        @Model.FullName
+                    </h2>
+
+                    <hr class="mb-4" />
+
+                    <!-- BIO -->
+                    <h5 class="text-muted mb-2">
+                        <i class="bi bi-card-text"></i> Biography
+                    </h5>
+
+                    @if (!string.IsNullOrWhiteSpace(Model.Bio))
+                    {
+                        <p class="fs-6 text-secondary">
+                            @Model.Bio
+                        </p>
+                    }
+                    else
+                    {
+                        <p class="text-muted fst-italic">
+                            No biography available for this actor.
+                        </p>
+                    }
+
+                    <!-- ACTIONS -->
+                    <div class="d-flex gap-3 mt-5">
+
+                        <a asp-action="Index"
+                           class="btn btn-outline-secondary btn-lg">
+                            <i class="bi bi-arrow-left"></i>
+                            Back to List
+                        </a>
+
+                        <a asp-action="Edit"
+                           asp-route-id="@Model.Id"
+                           class="btn btn-outline-primary btn-lg">
+                            <i class="bi bi-pencil-square"></i>
+                            Edit Actor
+                        </a>
+
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>
