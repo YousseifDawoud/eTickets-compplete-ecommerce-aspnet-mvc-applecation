@@ -77,4 +77,32 @@ public class ActorController : Controller
 
         return RedirectToAction(nameof(Index));
     }
+
+    // GET: Actors/Delete/id
+    [HttpGet]
+    public async Task<IActionResult> Delete(int id)
+    {
+        var actor = await _service.GetByIdAsync(id, HttpContext.RequestAborted);
+
+        if (actor == null)
+            return NotFound();
+
+        return View(actor);
+    }
+
+    // Post: Actor/Delete/id
+    [HttpPost , ActionName(nameof(Delete))]
+    public async Task<IActionResult> DeleteConfirmed(int id)
+    {
+        // Get the actor by id
+        var actor = await _service.GetByIdAsync(id, HttpContext.RequestAborted);
+
+        // If actor is null return NotFound
+        if (actor is null) return NotFound();
+
+        // Call the service to delete the actor
+        await _service.DeleteAsync(id, HttpContext.RequestAborted);
+
+        return RedirectToAction(nameof(Index));
+    }
 }
