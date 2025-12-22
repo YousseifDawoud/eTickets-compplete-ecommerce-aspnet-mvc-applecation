@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "Not Found";
+}
+
+<div class="container mt-5">
+
+    <div class="row justify-content-center">
+        <div class="col-md-8 col-lg-7">
+
+            <div class="card shadow-sm border-0">
+
+                <!-- HEADER -->
+                <div class="card-header bg-secondary text-white text-center">
+                    <h4 class="mb-0">
+                        Resource Not Found
+                    </h4>
+                </div>
+
+                <!-- BODY -->
+                <div class="card-body text-center p-4">
+
+                    <h1 class="display-4 text-muted">404</h1>
+
+                    <p class="fs-5 mt-3">
+                        The item you are looking for does not exist or has been removed.
+                    </p>
+
+                    <p class="text-muted">
+                        Please check the URL or return to the main list.
+                    </p>
+
+                    <div class="mt-4">
+
+                        <a asp-controller="Actor"
+                           asp-action="Index"
+                           class="btn btn-outline-primary px-4">
+                            Back to Actors
+                        </a>
+
+                        <a asp-controller="Movie"
+                           asp-action="Index"
+                           class="btn btn-outline-secondary px-4 ms-2">
+                            Home
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+    </div>
+
+</div>

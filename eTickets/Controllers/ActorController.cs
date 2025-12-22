@@ -16,12 +16,15 @@ public class ActorController : Controller
     }
 
 
+
     // GET: /Actor
     public async Task<IActionResult> Index()
     {
         var actors = await _service.GetAllAsync(HttpContext.RequestAborted);
         return View(actors);
     }
+
+
 
     // Get: Actor/Create
     [HttpGet]
@@ -42,22 +45,29 @@ public class ActorController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+
+
     // Get : Actor/Details/{id}
     [HttpGet]
     public async Task<IActionResult> Details(int id)
     {
         var actor = await _service.GetByIdAsync(id, HttpContext.RequestAborted);
-        if (actor is null) return  NotFound();
+        if (actor is null)
+            return  View("NotFound");
+
         return View(actor);
     }
 
+
+
     // GET: Actor/Edit/id
+    [HttpGet]
     public async Task<IActionResult> Edit(int id)
     {
         var actor = await _service.GetByIdAsync(id, HttpContext.RequestAborted);
 
         if (actor is null)
-            return NotFound();
+            return View("NotFound");
 
         return View(actor);
     }
@@ -78,14 +88,16 @@ public class ActorController : Controller
         return RedirectToAction(nameof(Index));
     }
 
+
+
     // GET: Actors/Delete/id
     [HttpGet]
     public async Task<IActionResult> Delete(int id)
     {
         var actor = await _service.GetByIdAsync(id, HttpContext.RequestAborted);
 
-        if (actor == null)
-            return NotFound();
+        if (actor is null)
+            return View("NotFound");
 
         return View(actor);
     }
@@ -98,7 +110,8 @@ public class ActorController : Controller
         var actor = await _service.GetByIdAsync(id, HttpContext.RequestAborted);
 
         // If actor is null return NotFound
-        if (actor is null) return NotFound();
+        if (actor is null) 
+            View("NotFound");
 
         // Call the service to delete the actor
         await _service.DeleteAsync(id, HttpContext.RequestAborted);
