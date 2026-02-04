@@ -1,0 +1,187 @@
+@{
+    ViewData["Title"] = "Portfolio";
+}
+
+<section class="py-4">
+    <div class="row align-items-center g-4">
+        <div class="col-lg-7">
+            <p class="text-uppercase text-primary fw-semibold mb-2">.NET Developer Portfolio</p>
+            <h1 class="display-5 fw-bold">Hi, I'm Amina. I build reliable, user-focused .NET web apps.</h1>
+            <p class="lead text-muted mt-3">
+                I specialize in ASP.NET Core MVC, clean architecture, and SQL Server-backed applications.
+                I enjoy collaborating with product teams to turn ideas into delightful, performant experiences.
+            </p>
+            <div class="d-flex flex-wrap gap-2 mt-4">
+                <a class="btn btn-primary btn-lg" href="#projects">
+                    <i class="bi bi-rocket-takeoff"></i> View Projects
+                </a>
+                <a class="btn btn-outline-secondary btn-lg" href="#contact">
+                    <i class="bi bi-envelope"></i> Contact Me
+                </a>
+            </div>
+            <div class="d-flex flex-wrap gap-3 mt-4 text-muted">
+                <span><i class="bi bi-geo-alt"></i> Remote / Cairo</span>
+                <span><i class="bi bi-briefcase"></i> 4+ years experience</span>
+                <span><i class="bi bi-award"></i> Microsoft Certified</span>
+            </div>
+        </div>
+        <div class="col-lg-5">
+            <div class="card border-0 shadow-sm">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Core Stack</h5>
+                    <div class="d-flex flex-wrap gap-2 mt-3">
+                        <span class="badge text-bg-light border">ASP.NET Core</span>
+                        <span class="badge text-bg-light border">C#</span>
+                        <span class="badge text-bg-light border">Entity Framework</span>
+                        <span class="badge text-bg-light border">SQL Server</span>
+                        <span class="badge text-bg-light border">Azure</span>
+                        <span class="badge text-bg-light border">REST APIs</span>
+                        <span class="badge text-bg-light border">Docker</span>
+                    </div>
+                    <hr />
+                    <h6 class="fw-semibold">What I bring</h6>
+                    <ul class="list-unstyled text-muted mb-0">
+                        <li class="mb-2"><i class="bi bi-check2-circle text-success"></i> Scalable MVC and API solutions</li>
+                        <li class="mb-2"><i class="bi bi-check2-circle text-success"></i> UI experiences that feel fast and polished</li>
+                        <li><i class="bi bi-check2-circle text-success"></i> Clean code, testing, and CI/CD readiness</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="projects" class="py-4">
+    <div class="d-flex align-items-center justify-content-between flex-wrap mb-3">
+        <div>
+            <h2 class="fw-bold">Featured Projects</h2>
+            <p class="text-muted mb-0">A snapshot of recent .NET work.</p>
+        </div>
+        <span class="badge bg-primary-subtle text-primary border">Updated 2025</span>
+    </div>
+
+    <div class="row g-4">
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Retail Insights Dashboard</h5>
+                    <p class="text-muted">
+                        Power BI-inspired analytics portal with ASP.NET Core MVC, role-based access, and
+                        SQL Server reporting views.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge text-bg-light border">MVC</span>
+                        <span class="badge text-bg-light border">SQL Server</span>
+                        <span class="badge text-bg-light border">Azure App Service</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Patient Scheduling Suite</h5>
+                    <p class="text-muted">
+                        Scheduling workflow for clinics with automated reminders, calendar integrations,
+                        and audit logging.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge text-bg-light border">ASP.NET Core</span>
+                        <span class="badge text-bg-light border">Hangfire</span>
+                        <span class="badge text-bg-light border">Twilio</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4">
+            <div class="card h-100 shadow-sm border-0">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">eCommerce Fulfillment Hub</h5>
+                    <p class="text-muted">
+                        Order orchestration service with clean architecture, background jobs,
+                        and real-time notifications.
+                    </p>
+                    <div class="d-flex flex-wrap gap-2">
+                        <span class="badge text-bg-light border">SignalR</span>
+                        <span class="badge text-bg-light border">CQRS</span>
+                        <span class="badge text-bg-light border">Docker</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="py-4">
+    <div class="row g-4">
+        <div class="col-lg-6">
+            <h2 class="fw-bold">Services</h2>
+            <p class="text-muted">How I can help your team succeed.</p>
+            <ul class="list-group shadow-sm">
+                <li class="list-group-item d-flex gap-3">
+                    <i class="bi bi-layers text-primary fs-4"></i>
+                    <div>
+                        <h6 class="fw-semibold mb-1">Web App Development</h6>
+                        <p class="text-muted mb-0">From MVPs to enterprise-ready MVC and API platforms.</p>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex gap-3">
+                    <i class="bi bi-shield-check text-primary fs-4"></i>
+                    <div>
+                        <h6 class="fw-semibold mb-1">Performance & Security</h6>
+                        <p class="text-muted mb-0">Caching, profiling, and secure-by-design practices.</p>
+                    </div>
+                </li>
+                <li class="list-group-item d-flex gap-3">
+                    <i class="bi bi-diagram-3 text-primary fs-4"></i>
+                    <div>
+                        <h6 class="fw-semibold mb-1">System Integration</h6>
+                        <p class="text-muted mb-0">Payments, CRMs, and third-party APIs with resilience.</p>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="col-lg-6">
+            <div class="card border-0 shadow-sm h-100">
+                <div class="card-body">
+                    <h2 class="fw-bold">Process</h2>
+                    <p class="text-muted">A simple workflow that keeps delivery predictable.</p>
+                    <ol class="list-group list-group-numbered">
+                        <li class="list-group-item">
+                            <strong>Discover</strong>
+                            <p class="text-muted mb-0">Align on goals, scope, and milestones.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Design & Build</strong>
+                            <p class="text-muted mb-0">Create architecture, deliver features in sprints.</p>
+                        </li>
+                        <li class="list-group-item">
+                            <strong>Launch & Iterate</strong>
+                            <p class="text-muted mb-0">Ship, monitor, and improve based on feedback.</p>
+                        </li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section id="contact" class="py-4">
+    <div class="card border-0 shadow-sm">
+        <div class="card-body">
+            <div class="row align-items-center g-3">
+                <div class="col-lg-8">
+                    <h2 class="fw-bold">Let's build your next .NET product</h2>
+                    <p class="text-muted mb-0">
+                        Reach out for consulting, contract opportunities, or collaboration on your ASP.NET Core project.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-lg-end">
+                    <a class="btn btn-primary btn-lg" href="mailto:hello@dotnetdev.com">
+                        <i class="bi bi-send"></i> hello@dotnetdev.com
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
