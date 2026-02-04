@@ -10,4 +10,8 @@ public class ActorService : EntityBaseRepository<Actor>, IActorService
     // Dependency Injection of AppDbContext
     public ActorService(AppDbContext context) : base(context) { }
 
+
+
+     
+
 }
